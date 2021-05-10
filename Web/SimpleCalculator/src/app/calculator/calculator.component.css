@@ -1,0 +1,30 @@
+.btn-square {
+    width: 75px;
+    height: 75px;
+    border-radius: 0;
+}
+
+.btn-rectangle {
+    width: 150px;
+    height: 75px;
+    border-radius: 0;
+}
+
+.li {
+    list-style: none;
+    width: 300px;
+}
+
+.date {
+    color: grey;
+    position: absolute;
+    left: 320px;
+}
+
+.calculation:hover {
+    cursor: pointer;
+}
+
+.stepsTaken {
+    white-space: pre-line;
+}

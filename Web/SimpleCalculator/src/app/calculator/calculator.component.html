@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Simple Calculator</h1>
+        <div class="li" *ngFor="let calculation of Calculations">
+            <span class="calculation" (click)="SetStepsTaken(calculation)">{{ calculation.readableCalculation }}</span>
+            <span class="date">{{calculation.dateOfExecution}}</span>
+        </div>
+        <p>{{ScreenText}}</p>
+        <div *ngIf="Error" class="alert alert-danger">{{ Error }}</div>
+            <button class="btn btn-lg btn-dark btn-rectangle" (click)="clear()">Clear</button>
+            <button class="btn btn-lg btn-dark btn-rectangle" (click)="clearAll()">Clear All</button>
+        <div>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('1')">1</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('2')">2</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('3')">3</button>
+            <button class="btn btn-lg btn-info btn-square" (click)="addCharacter('+')">+</button>
+        </div><div>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('4')">4</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('5')">5</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('6')">6</button>
+            <button class="btn btn-lg btn-info btn-square" (click)="addCharacter('-')">-</button>
+        </div><div>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('7')">7</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('8')">8</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('9')">9</button>
+            <button class="btn btn-lg btn-info btn-square" (click)="addCharacter('*')">*</button>
+        </div><div>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('0')">0</button>
+            <button class="btn btn-lg btn-primary btn-square" (click)="addCharacter('.')">.</button>
+            <button class="btn btn-lg btn-danger btn-square" (click)="calculate()">=</button>
+            <button class="btn btn-lg btn-info btn-square" (click)="addCharacter('/')">/</button>
+        </div>
+        <b>Tip:</b> Feel free to add more than one operator to the equation.<br/>
+        <b>Tip:</b> Click on a calculation to see the steps taken by the calculator.
+        <div *ngIf="ShowStepsTaken" class="stepsTaken">{{StepsTaken}}</div>
+    </div>
+</div>
