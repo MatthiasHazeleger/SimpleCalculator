@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SimpleCalcularAPI_url: 'http://localhost:8080/calculation'
+  SimpleCalcularAPI_url: 'http://localhost:8081/calculation'
 };
 
 /*
