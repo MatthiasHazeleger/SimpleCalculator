@@ -12,14 +12,20 @@
 
 ### Linux/Mac:
 - open a new terminal in project folder.
-- type: sudo java -jar SimpleCalculator\target\SimpleCalculator-0.0.1-SNAPSHOT.jar
+- type: cd SimpleCalculator
+- hit enter.
+- type: sudo mvn install
+- hit enter.
+- type: sudo java -jar target/SimpleCalculator-0.0.1-SNAPSHOT.jar
 - hit enter.
 - open a new terminal in poject folder.
-- type: cd Web\SimpleCalculator
+- type: cd Web/SimpleCalculator
 - hit enter.
+- type: npm i
+- hit enter. (if you get any prompts type "y" and press enter)
 - type: ng serve
 - hit enter.
-- Open your favourite browser en head to http://localhost:4200
+- Open Chrome browser and head to http://localhost:4200
 - The calculator should now be up and running.
 - Close the 2 terminal windows when done.
 
