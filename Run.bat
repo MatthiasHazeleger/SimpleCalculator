@@ -1,5 +1,5 @@
-start cmd /k "cd %~dp0\SimpleCalculator & mvn install & java -jar %~dp0\SimpleCalculator\target\SimpleCalculator-0.0.1-SNAPSHOT.jar"
+start cmd /k "cd %~dp0\SimpleCalculator & mvnw.cmd clean install & mvnw spring-boot:run"
 
-start cmd /k "cd %~dp0\Web\SimpleCalculator & ng serve" 
+start cmd /k "cd %~dp0\Web\SimpleCalculator & npm i & http-server dist/SimpleCalculator" 
 
-start "" http://localhost:4200
+start "" http://localhost:8080
