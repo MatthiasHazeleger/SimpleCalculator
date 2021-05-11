@@ -2,28 +2,29 @@
 
 ## User instructions
 
-- Make sure java 11, Maven and Angular are installed globally on your pc.
+- Make sure java 11 is installed correctly on your machine
+- Make sure npm is installed globally on your machine
 
 ### Windows:
 - double click Run.bat.
 - You should be presented with a web page in your default browser.
-- After a short wait (<10 seconds) you should be presented with the calculator up and running.
+- After a short wait (<10 seconds or so depending on your machine) you should be presented with the calculator up and running.
 - Close the 2 command prompt windows when done.
 
 ### Linux/Mac:
 - open a new terminal in project folder.
 - type: cd SimpleCalculator
 - hit enter.
-- type: sudo mvn install
+- type: mvnw clean install
 - hit enter.
-- type: sudo java -jar target/SimpleCalculator-0.0.1-SNAPSHOT.jar
+- type: mvnw spring-boot:run
 - hit enter.
 - open a new terminal in poject folder.
 - type: cd Web/SimpleCalculator
 - hit enter.
 - type: npm i
 - hit enter. (if you get any prompts type "y" and press enter)
-- type: ng serve
+- type: http-server dist/SimpleCalculator
 - hit enter.
 - Open Chrome browser and head to http://localhost:4200
 - The calculator should now be up and running.
@@ -45,8 +46,8 @@
 - type: ng serve
 
 ### Access:
-Frontend will be hosted on localhost:4200
-Backend will be hosted on localhost:8080
+Frontend will be hosted on localhost:8080
+Backend will be hosted on localhost:8081
 Database will be accessable on localhost:8080/h2-console
 	username: sa
 	password: password
