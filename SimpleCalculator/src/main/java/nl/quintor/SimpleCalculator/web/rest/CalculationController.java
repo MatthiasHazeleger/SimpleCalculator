@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(path = "/calculation", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CalculationController {
     @Autowired
