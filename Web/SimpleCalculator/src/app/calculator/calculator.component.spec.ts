@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed} from '@angular/core/testing'
 import { of } from 'rxjs';
 import { CalculatorService } from '../services/calculator.service';
 
