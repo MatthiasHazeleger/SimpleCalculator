@@ -13,16 +13,16 @@ public class CalculationService {
     @Autowired
     private CalculationRepository calculationRepository;
 
-    public List<Calculation> FindAll(){
+    public List<Calculation> findAll(){
         return calculationRepository.findAll();
     }
 
-    public Calculation Save(Calculation calculation){
+    public Calculation save(Calculation calculation){
         calculation.setDateOfExecution(LocalDate.now());
         return calculationRepository.save(calculation);
     }
 
-    public void DeleteAll(){
+    public void deleteAll(){
         calculationRepository.deleteAll();
     }
 }

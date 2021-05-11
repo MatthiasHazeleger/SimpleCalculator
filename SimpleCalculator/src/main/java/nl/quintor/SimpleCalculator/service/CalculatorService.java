@@ -10,15 +10,15 @@ import java.util.List;
 @Service
 public class CalculatorService {
 
-    public double Add(double i1, double i2){
+    public double add(double i1, double i2){
         return i1 + i2;
     }
 
-    public double Subtract(double i1, double i2){
+    public double subtract(double i1, double i2){
         return i1 - i2;
     }
 
-    public double Divide(double i1, double i2) throws ArithmeticException{
+    public double divide(double i1, double i2) throws ArithmeticException{
 
         if (i2 == 0.0)
         {
@@ -28,7 +28,7 @@ public class CalculatorService {
         return i1 / i2;
     }
 
-    public double Multiply(double i1, double i2){
+    public double multiply(double i1, double i2){
         return i1 * i2;
     }
 
@@ -90,7 +90,7 @@ public class CalculatorService {
      * @return Calculation
      * @throws ArithmeticException
      */
-    public Calculation ExecuteCalculation(Calculation calculation) throws ArithmeticException{
+    public Calculation executeCalculation(Calculation calculation) throws ArithmeticException{
         // Here we save the previous outcomes of calculated SubCalculations
         // Used when a SubCalculation has 1 input that depends on a previous outcome
         List<SubCalculation> previous = new ArrayList<>();
@@ -132,14 +132,14 @@ public class CalculatorService {
             }
 
             // Now that we filled the inputs we can calculate the outcome
-            ExecuteSubCalculation(subCalculation);
+            executeSubCalculation(subCalculation);
 
             previous.add(subCalculation);
 
             // Save the outcome in the object
             calculation.setOutput(subCalculation.getOutput());
         });
-        calculation.setReadableCalculation(calculation.getReadableCalculation() + " = " + DoubleToString(calculation.getOutput()));
+        calculation.setReadableCalculation(calculation.getReadableCalculation() + " = " + doubleToString(calculation.getOutput()));
 
         return calculation;
     }
@@ -149,7 +149,7 @@ public class CalculatorService {
      * @param d
      * @return String
      */
-    public String DoubleToString(double d)
+    public String doubleToString(double d)
     {
         if(d == (long) d)
             return String.format("%d",(long)d);
@@ -158,11 +158,11 @@ public class CalculatorService {
     }
 
     /**
-     * Checks if a Subcalculation has two usable inputs
+     * Checks if a SubCalculation has two usable inputs
      * @param subCalculation
      * @return String
      */
-    public boolean IsSubCalculationValid(SubCalculation subCalculation){
+    public boolean isSubCalculationValid(SubCalculation subCalculation){
         if (subCalculation.getInput1() == null & subCalculation.getInput2() == null)
             return false;
         return true;
@@ -173,22 +173,22 @@ public class CalculatorService {
      * @param subCalculation
      * @throws ArithmeticException
      */
-    public void ExecuteSubCalculation(SubCalculation subCalculation) throws ArithmeticException{
-        if (!IsSubCalculationValid(subCalculation))
+    public void executeSubCalculation(SubCalculation subCalculation) throws ArithmeticException{
+        if (!isSubCalculationValid(subCalculation))
             throw new ArithmeticException("Input invalid");
 
         switch (subCalculation.getOperator()){
             case Add:
-                subCalculation.setOutput(Add(subCalculation.getInput1(), subCalculation.getInput2()));
+                subCalculation.setOutput(add(subCalculation.getInput1(), subCalculation.getInput2()));
                 break;
             case Subtract:
-                subCalculation.setOutput(Subtract(subCalculation.getInput1(), subCalculation.getInput2()));
+                subCalculation.setOutput(subtract(subCalculation.getInput1(), subCalculation.getInput2()));
                 break;
             case Multiply:
-                subCalculation.setOutput(Multiply(subCalculation.getInput1(), subCalculation.getInput2()));
+                subCalculation.setOutput(multiply(subCalculation.getInput1(), subCalculation.getInput2()));
                 break;
             case Divide:
-                subCalculation.setOutput(Divide(subCalculation.getInput1(), subCalculation.getInput2()));
+                subCalculation.setOutput(divide(subCalculation.getInput1(), subCalculation.getInput2()));
                 break;
         }
     }

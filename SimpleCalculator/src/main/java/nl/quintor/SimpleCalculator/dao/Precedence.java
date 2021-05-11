@@ -11,7 +11,7 @@ public enum Precedence {
 
     private final int value;
 
-    public Integer GetValue(){
+    public Integer getValue(){
         return value;
     }
 }

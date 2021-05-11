@@ -24,6 +24,6 @@ public class SubCalculation implements Comparable<SubCalculation> {
 
     @Override
     public int compareTo(SubCalculation o) {
-        return getPrecedence().GetValue().compareTo(o.getPrecedence().GetValue());
+        return getPrecedence().getValue().compareTo(o.getPrecedence().getValue());
     }
 }

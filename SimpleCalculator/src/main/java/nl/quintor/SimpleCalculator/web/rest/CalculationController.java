@@ -25,19 +25,19 @@ public class CalculationController {
     private CalculationParseService calculationParseService;
 
     @GetMapping(path = "/all")
-    public @ResponseBody CalculationsDto GetFullCalculationHistory(){
+    public @ResponseBody CalculationsDto getFullCalculationHistory(){
         CalculationsDto calculationsDto = new CalculationsDto();
-        calculationsDto.setCalculationDtos(calculationService.FindAll().stream().map(CalculationTransformer::ToDto).toArray(CalculationDto[]::new));
+        calculationsDto.setCalculationDtos(calculationService.findAll().stream().map(CalculationTransformer::toDto).toArray(CalculationDto[]::new));
         return calculationsDto;
     }
 
     @PostMapping
-    public @ResponseBody CalculationDto ExecuteCalculation(@RequestBody String calculationString){
-        Calculation calculation = calculationParseService.FromString(calculationString);
+    public @ResponseBody CalculationDto executeCalculation(@RequestBody String calculationString){
+        Calculation calculation = calculationParseService.fromString(calculationString);
         calculation.setReadableCalculation(calculationString);
 
         try {
-            calculatorService.ExecuteCalculation(calculation);
+            calculatorService.executeCalculation(calculation);
         } catch (ArithmeticException e){
             calculation.setError(e.getMessage());
             calculation.setReadableCalculation(calculation.getReadableCalculation() + " = " + e.getMessage());
@@ -46,12 +46,12 @@ public class CalculationController {
             calculation.setReadableCalculation(calculation.getReadableCalculation() + " = Invalid");
         }
 
-        Calculation calculationResult = calculationService.Save(calculation);
-        return CalculationTransformer.ToDto(calculationResult);
+        Calculation calculationResult = calculationService.save(calculation);
+        return CalculationTransformer.toDto(calculationResult);
     }
 
     @DeleteMapping
     public void deleteCalculationHistory(){
-        calculationService.DeleteAll();
+        calculationService.deleteAll();
     }
 }

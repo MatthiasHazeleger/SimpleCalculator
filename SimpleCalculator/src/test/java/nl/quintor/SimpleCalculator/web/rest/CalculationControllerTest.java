@@ -45,11 +45,11 @@ public class CalculationControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        when(calculationServiceMock.Save(any(Calculation.class))).thenReturn(mockedCalculation);
-        when(calculatorService.ExecuteCalculation(any(Calculation.class))).thenReturn(mockedCalculation);
-        when(calculationParseService.FromString(any(String.class))).thenReturn(mockedCalculation);
+        when(calculationServiceMock.save(any(Calculation.class))).thenReturn(mockedCalculation);
+        when(calculatorService.executeCalculation(any(Calculation.class))).thenReturn(mockedCalculation);
+        when(calculationParseService.fromString(any(String.class))).thenReturn(mockedCalculation);
 
-        CalculationDto responseBody = calculationController.ExecuteCalculation(mockedCalculationString);
+        CalculationDto responseBody = calculationController.executeCalculation(mockedCalculationString);
 
         assertThat(responseBody).isEqualTo(mockedCalculationDto);
     }
