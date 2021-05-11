@@ -21,32 +21,32 @@ public class CalculatorServiceTest {
 
     @Test
     public void addShouldReturnAddedParameters(){
-        double result = calculatorService.Add(10, 9);
+        double result = calculatorService.add(10, 9);
         assertEquals(19.0, result);
     }
 
     @Test
     public void subtractShouldReturnSubtractedParameters(){
-        double result = calculatorService.Subtract(10, 9);
+        double result = calculatorService.subtract(10, 9);
         assertEquals(1.0, result);
     }
 
     @Test
     public void multiplyShouldReturnMultipliedParameters(){
-        double result = calculatorService.Multiply(10, 9);
+        double result = calculatorService.multiply(10, 9);
         assertEquals(90.0, result);
     }
 
     @Test
     public void divideShouldReturnDividedParameters(){
-        double result = calculatorService.Divide(5, 2);
+        double result = calculatorService.divide(5, 2);
         assertEquals(2.5, result);
     }
 
     @Test
     public void divideShouldThrowArithmeticExceptionOnDivisionByZero(){
         assertThrows(ArithmeticException.class, () -> {
-            calculatorService.Divide(5, 0);
+            calculatorService.divide(5, 0);
         });
     }
 
@@ -55,7 +55,7 @@ public class CalculatorServiceTest {
         SubCalculation mockedSubCalculation = new SubCalculation();
         mockedSubCalculation.setInput1(null);
         mockedSubCalculation.setInput2(null);
-        boolean result = calculatorService.IsSubCalculationValid(mockedSubCalculation);
+        boolean result = calculatorService.isSubCalculationValid(mockedSubCalculation);
 
         assertFalse(result);
     }
@@ -65,22 +65,22 @@ public class CalculatorServiceTest {
         SubCalculation mockedSubCalculation = new SubCalculation();
         mockedSubCalculation.setInput1(1.0);
         mockedSubCalculation.setInput2(1.0);
-        boolean result = calculatorService.IsSubCalculationValid(mockedSubCalculation);
+        boolean result = calculatorService.isSubCalculationValid(mockedSubCalculation);
 
         assertTrue(result);
     }
 
     @Test
     public void DoubleToStringShouldReturnDotValue(){
-        String result1 = calculatorService.DoubleToString(1.1);
-        String result2 = calculatorService.DoubleToString(1.01);
+        String result1 = calculatorService.doubleToString(1.1);
+        String result2 = calculatorService.doubleToString(1.01);
         assertEquals("1.1",result1);
         assertEquals("1.01",result2);
     }
 
     @Test
     public void DoubleToStringShouldReturnNoZerosAsDecimals(){
-        String result = calculatorService.DoubleToString(1.0);
+        String result = calculatorService.doubleToString(1.0);
         assertEquals("1",result);
     }
 
@@ -94,10 +94,10 @@ public class CalculatorServiceTest {
         mockedSubCalculation2.setInput2(1.0);
 
         assertThrows(NullPointerException.class, () -> {
-            calculatorService.ExecuteSubCalculation(mockedSubCalculation1);
+            calculatorService.executeSubCalculation(mockedSubCalculation1);
         });
         assertThrows(NullPointerException.class, () -> {
-            calculatorService.ExecuteSubCalculation(mockedSubCalculation2);
+            calculatorService.executeSubCalculation(mockedSubCalculation2);
         });
     }
 
@@ -108,7 +108,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation.setInput2(2.0);
         mockedSubCalculation.setOperator(Operator.Add);
 
-        calculatorService.ExecuteSubCalculation(mockedSubCalculation);
+        calculatorService.executeSubCalculation(mockedSubCalculation);
         double resultAdd = mockedSubCalculation.getOutput();
 
         assertEquals(3.0, resultAdd);
@@ -121,7 +121,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation.setInput2(2.0);
         mockedSubCalculation.setOperator(Operator.Subtract);
 
-        calculatorService.ExecuteSubCalculation(mockedSubCalculation);
+        calculatorService.executeSubCalculation(mockedSubCalculation);
         double resultAdd = mockedSubCalculation.getOutput();
 
         assertEquals(-1.0, resultAdd);
@@ -134,7 +134,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation.setInput2(2.0);
         mockedSubCalculation.setOperator(Operator.Multiply);
 
-        calculatorService.ExecuteSubCalculation(mockedSubCalculation);
+        calculatorService.executeSubCalculation(mockedSubCalculation);
         double resultAdd = mockedSubCalculation.getOutput();
 
         assertEquals(4.0, resultAdd);
@@ -147,7 +147,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation.setInput2(2.0);
         mockedSubCalculation.setOperator(Operator.Divide);
 
-        calculatorService.ExecuteSubCalculation(mockedSubCalculation);
+        calculatorService.executeSubCalculation(mockedSubCalculation);
         double resultAdd = mockedSubCalculation.getOutput();
 
         assertEquals(1.0, resultAdd);
@@ -163,7 +163,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation1.setInput2(3.0);
         mockedCalculation.setSubCalculations(List.of(mockedSubCalculation1));
 
-        Calculation result = calculatorService.ExecuteCalculation(mockedCalculation);
+        Calculation result = calculatorService.executeCalculation(mockedCalculation);
 
         assertEquals(6.0, result.getOutput());
     }
@@ -183,7 +183,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation2.setInput2(3.0);
         mockedCalculation.setSubCalculations(List.of(mockedSubCalculation1, mockedSubCalculation2));
 
-        Calculation result = calculatorService.ExecuteCalculation(mockedCalculation);
+        Calculation result = calculatorService.executeCalculation(mockedCalculation);
 
         assertEquals(9.0, result.getOutput());
     }
@@ -208,7 +208,7 @@ public class CalculatorServiceTest {
         mockedSubCalculation3.setInput2(3.0);
         mockedCalculation.setSubCalculations(List.of(mockedSubCalculation1, mockedSubCalculation2, mockedSubCalculation3));
 
-        Calculation result = calculatorService.ExecuteCalculation(mockedCalculation);
+        Calculation result = calculatorService.executeCalculation(mockedCalculation);
 
         assertEquals(12.0, result.getOutput());
     }

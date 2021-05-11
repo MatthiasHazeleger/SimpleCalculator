@@ -6,7 +6,7 @@ import nl.quintor.SimpleCalculator.dao.SubCalculation;
 import nl.quintor.SimpleCalculator.web.dto.SubCalculationDto;
 
 public class SubCalculationTransformer {
-    public static SubCalculation ToDao(SubCalculationDto subCalculationDto){
+    public static SubCalculation toDao(SubCalculationDto subCalculationDto){
         SubCalculation subCalculation = new SubCalculation();
         subCalculation.setId(subCalculationDto.getId());
         subCalculation.setInput1(subCalculationDto.getInput1());
@@ -17,7 +17,7 @@ public class SubCalculationTransformer {
         return subCalculation;
     }
 
-    public static SubCalculationDto ToDto(SubCalculation subCalculation){
+    public static SubCalculationDto toDto(SubCalculation subCalculation){
         SubCalculationDto subCalculationDto = new SubCalculationDto();
         subCalculationDto.setId(subCalculation.getId());
         subCalculationDto.setInput1(subCalculation.getInput1());

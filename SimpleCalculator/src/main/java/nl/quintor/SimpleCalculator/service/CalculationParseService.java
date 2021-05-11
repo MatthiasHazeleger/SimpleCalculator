@@ -22,10 +22,10 @@ public class CalculationParseService {
      * @param calculationString
      * @return Calculation
      */
-    public Calculation FromString(String calculationString){
+    public Calculation fromString(String calculationString){
         Calculation calculation = new Calculation();
-        calculationString = FindMultiplicationAndDivision(calculation, calculationString);
-        FindAddingAndSubtracting(calculation, calculationString);
+        calculationString = findMultiplicationAndDivision(calculation, calculationString);
+        findAddingAndSubtracting(calculation, calculationString);
         return calculation;
     }
 
@@ -35,9 +35,9 @@ public class CalculationParseService {
      * @param calculationString
      * @return String
      */
-    public String FindMultiplicationAndDivision(Calculation calculation, String calculationString){
+    public String findMultiplicationAndDivision(Calculation calculation, String calculationString){
         String regex = AnyNumberRegex + "[\\*\\/]" + AnyNumberRegex;
-        return FindAndReplaceCalculations(calculation, Precedence.MultiplicationAndDivision, regex, calculationString);
+        return findAndReplaceCalculations(calculation, Precedence.MultiplicationAndDivision, regex, calculationString);
     }
 
     /**
@@ -46,9 +46,9 @@ public class CalculationParseService {
      * @param calculationString
      * @return String
      */
-    public String FindAddingAndSubtracting(Calculation calculation, String calculationString){
+    public String findAddingAndSubtracting(Calculation calculation, String calculationString){
         String regex = AnyNumberRegex + "[\\+\\-]" + AnyNumberRegex;
-        return FindAndReplaceCalculations(calculation, Precedence.AddingAndSubtracting, regex, calculationString);
+        return findAndReplaceCalculations(calculation, Precedence.AddingAndSubtracting, regex, calculationString);
     }
 
     /**
@@ -59,18 +59,18 @@ public class CalculationParseService {
      * @param calculationString
      * @return String
      */
-    public String FindAndReplaceCalculations(Calculation calculation, Precedence precedence, String regex, String calculationString){
-        String match = GetMatch(regex, calculationString, 0);
+    public String findAndReplaceCalculations(Calculation calculation, Precedence precedence, String regex, String calculationString){
+        String match = getMatch(regex, calculationString, 0);
         while(match != null){
-            SubCalculation newSubCalculation = AddNewSubCalculation(
+            SubCalculation newSubCalculation = addNewSubCalculation(
                     calculation,
                     precedence,
-                    GetOperator(match),
-                    GetInputValue(match, 0),
-                    GetInputValue(match, 1)
+                    getOperator(match),
+                    getInputValue(match, 0),
+                    getInputValue(match, 1)
             );
             calculationString = calculationString.replaceFirst(regex, ResultInsert);
-            match = GetMatch(regex, calculationString, 0);
+            match = getMatch(regex, calculationString, 0);
         }
         return calculationString;
     }
@@ -82,7 +82,7 @@ public class CalculationParseService {
      * @param index
      * @return String
      */
-    public String GetMatch(String regex, String searchString, int index){
+    public String getMatch(String regex, String searchString, int index){
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(searchString);
         List<String> result = new ArrayList<>();
@@ -96,8 +96,8 @@ public class CalculationParseService {
         return null;
     }
 
-    public Double GetInputValue(String searchString, int index){
-        String match = GetMatch(AnyNumberRegex, searchString, index);
+    public Double getInputValue(String searchString, int index){
+        String match = getMatch(AnyNumberRegex, searchString, index);
 
         if (match == null || match.contains(ResultInsert))
             return null;
@@ -105,7 +105,7 @@ public class CalculationParseService {
         return Double.parseDouble(match);
     }
 
-    public Operator GetOperator(String searchString){
+    public Operator getOperator(String searchString){
         if (searchString.contains("*"))
             return Operator.Multiply;
         else if (searchString.contains("/"))
@@ -116,7 +116,7 @@ public class CalculationParseService {
             return Operator.Subtract;
     }
 
-    public SubCalculation AddNewSubCalculation(Calculation calculation, Precedence precedence, Operator operator, Double input1, Double input2){
+    public SubCalculation addNewSubCalculation(Calculation calculation, Precedence precedence, Operator operator, Double input1, Double input2){
         List<SubCalculation> subCalculations = calculation.getSubCalculations();
         SubCalculation newSubCalculation = new SubCalculation();
         newSubCalculation.setInput1(input1);
